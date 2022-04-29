@@ -1,0 +1,23 @@
+name: main
+
+on:
+  push:
+    tags:
+      - "v*.*"
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build
+        run: echo ${{ github.sha }} > Release-switch.txt
+      - name: Test
+        run: cat Release-switch.txt
+      - name: Release-switch
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: Release-switch.txt
+
