@@ -1,4 +1,4 @@
-name: main
+name: main-switch
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - "v*.*"
       
 jobs:
-  build:
+  build-switch:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
